@@ -204,10 +204,11 @@
         <pattern>CONTE DE * ATE *</pattern>
         <template>
             <think>
-                <set name="initial"><star/></set>
+                <set name="initial">
+                    <map><name>PREDECESSOR</name><star/></map>
+                </set>
                 <set name="final"><star index="2"/></set>
             </think>
-            <get name="initial"/>
             <condition name="final">
                 <li>
                     <value><get name="initial"/></value>
