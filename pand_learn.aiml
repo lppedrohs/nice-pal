@@ -1,0 +1,260 @@
+<aiml version="2.0">
+
+    <category>
+        <pattern>OLA ^</pattern>
+        <template>
+            <random>
+                <li>Olá! Como você se chama?</li>
+                <li>Olá! Qual seu nome?</li>
+                <li>E aii! Como posso te chamar?</li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>OLA *</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>OI ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>IAE ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>EAI ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>EAE ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>E AI ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>E AE ^</pattern>
+        <template>
+            <srai>OLA <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>$MEU NOME E *</pattern>
+        <template>
+            <think><set name="user_name"><star/></set></think>
+            <random>
+                <li>E aii, <get name="user_name"></get>.</li>
+                <li>Fala aí <get name="user_name"></get>, como posso te ajudar?</li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>$MEU NOME É *</pattern>
+        <template>
+            <srai>MEU NOME E <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># MEU NOME É *</pattern>
+        <template>
+            <srai>MEU NOME E <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># MEU NOME E *</pattern>
+        <template>
+            <srai><star/>MEU NOME É <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>*</pattern>
+        <that>COMO POSSO TE CHAMAR</that>
+        <template>
+            <srai>MEU NOME E <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>*</pattern>
+        <that>COMO VOCÊ SE CHAMA</that>
+        <template>
+            <srai>MEU NOME E <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>*</pattern>
+        <that>QUAL SEU NOME</that>
+        <template>
+            <srai>MEU NOME E <star/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>MEU NOME</pattern>
+        <template>
+            <condition name="user_name">
+                <li value="*">
+                    <random>
+                        <li><get name="user_name"/>. Não sou tão esquecido assim!</li>
+                        <li><get name="user_name"/>!</li>
+                        <li>Seu nome é <get name="user_name"/>!</li>
+                        <li>Tá esquecido hein, <get name="user_name"/>.</li>
+                    </random>
+                </li>
+                <li>
+                    <random>
+                        <li>Mas você nem se apresentou ainda :(</li>
+                        <li>Você nem me disse ainda...</li>
+                    </random> 
+                </li>
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>QUAL MEU NOME</pattern>
+        <template><srai>MEU NOME</srai></template>
+    </category>
+    
+    <category>
+        <pattern># CAPITAL DO <set>statesbrazil</set></pattern>
+        <template>
+            <random>
+                <li>
+                    <map name="capitalsbrazil"><star index="2"/></map> é a capital do <star index="2"/>.
+                </li>
+                <li>
+                    A capital do <star index="2"/> é <map name="capitalsbrazil"><star index="2"/></map>.
+                </li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># CAPITAL DE <set>statesbrazil</set></pattern>
+        <template>
+            <random>
+                <li>
+                    <map name="capitalsbrazil"><star index="2"/></map> é a capital de <star index="2"/>.
+                </li>
+                <li>
+                    A capital de <star index="2"/> é <map name="capitalsbrazil"><star index="2"/></map>.
+                </li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern><set>statesbrazil</set></pattern>
+        <template>
+            <random>
+                <li><map name="capitalsbrazil"><star/></map> é a capital do <star/>.</li>
+                <li>A capital de <star/> é <map name="capitalsbrazil"><star/></map>.</li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># CAPITAL DE *</pattern>
+        <template>
+            <random>
+                <li>Puuts. <star index="2"/> eu ainda não conheço :(</li>
+                <li><star index="2"/>? Não conheço :(</li>
+            </random>
+        </template>
+    </category>
+    
+    <category>
+        <pattern># CAPITAL DO *</pattern>
+        <template>
+            <srai>
+                <star/> CAPITAL DE <star index="2"/>
+            </srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTE DE * ATE *</pattern>
+        <template>
+            <think>
+                <set name="initial"><star/></set>
+                <set name="final"><star index="2"/></set>
+            </think>
+            <get name="initial"/>
+            <condition name="final">
+                <li>
+                    <value><get name="initial"/></value>
+                </li>
+                <li>
+                    <set name="initial">
+                        <map><name>SUCCESSOR</name><get name="initial"/></map>
+                    </set>
+                    <loop/>
+                </li>
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTE DE * A *</pattern>
+        <template>
+            <srai>CONTE DE <star/> ATE <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTAR DE * A *</pattern>
+        <template>
+            <srai>CONTE DE <star/> ATE <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTAR DE * ATE *</pattern>
+        <template>
+            <srai>CONTE DE <star/> ATE <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTE * ATE *</pattern>
+        <template>
+            <srai>CONTE DE <star/> ATE <star index="2"/></srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CONTE * A *</pattern>
+        <template>
+            <srai>CONTE DE <star/> ATE <star index="2"/></srai>
+        </template>
+    </category>
+
+</aiml>
